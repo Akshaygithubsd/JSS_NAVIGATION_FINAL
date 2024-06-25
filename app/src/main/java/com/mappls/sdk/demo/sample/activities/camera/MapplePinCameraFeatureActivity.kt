@@ -13,13 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 
-//import com.mapmyindia.sdk.maps.MapView
-//import com.mapmyindia.sdk.maps.MapmyIndiaMap
-//import com.mapmyindia.sdk.maps.OnMapReadyCallback
-//import com.mapmyindia.sdk.maps.CameraUpdateFactory
-//import com.mapmyindia.sdk.maps.geometry.LatLng
-//import com.mapmyindia.sdk.maps.MapmyIndiaMap
-
 
 
 import com.mappls.sdk.maps.MapView

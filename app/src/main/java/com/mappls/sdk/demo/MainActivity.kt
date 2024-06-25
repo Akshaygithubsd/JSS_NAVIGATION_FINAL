@@ -10,9 +10,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,8 +28,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,6 +45,8 @@ import com.mappls.sdk.demo.sample.activities.camera.CameraFeaturesActivity
 import com.mappls.sdk.demo.sample.activities.camera.DORMITORY
 import com.mappls.sdk.demo.sample.activities.camera.Jeweleery
 import com.mappls.sdk.demo.sample.activities.camera.Library_Activity
+//import kotlinx.coroutines.DefaultExecutor.delay
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -44,8 +54,58 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContent {
-            MainScreen()
+            MyApp()
+        }
+
+        lifecycleScope.launch {
+            delay(4000L) // Splash screen duration
+            setContent {
+                  MainScreen()
+            }
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    SplashScreen()
+}
+
+@Composable
+fun SplashScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.finallogo),
+                contentDescription = "Logo",
+                modifier = Modifier.size(750.dp).padding(start=132.dp)
+            )
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 32.dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Text(
+                text = "Welcome to JSS",
+                color = Color.Black,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(bottom = 16.dp)
+            )
         }
     }
 }
@@ -60,7 +120,7 @@ fun MainScreen() {
         scaffoldState = scaffoldState,
         topBar = {
             AppBar(
-                "JSS NAVIGATION",
+                "JSSATE-B NAVIGATION",
                 onNavigationIconClick = {
 //                    scope.launch {
 //                        scaffoldState.drawerState.open()
@@ -109,7 +169,7 @@ fun MainScreen() {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
         {
             Image(
-                painter = painterResource(id = R.drawable.background_jss), // Replace with your background image resource
+                painter = painterResource(id = R.drawable.whiteplain), // Replace with your background image resource
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.fillMaxSize()
@@ -161,11 +221,11 @@ fun UiInit(list: List<ListItem>) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(color = Color.Yellow, shape = RoundedCornerShape(8.dp)),
+                        .background(color = Color(0xFFFFA500), shape = RoundedCornerShape(8.dp)),
                     onClick = {
                         context.startActivity(Intent(context, item.destination))
                     },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Yellow,
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFA500),
                         )
                 ) {
                     Text(text = item.name, color = Color.Black, modifier = Modifier.padding(vertical = 8.dp))
