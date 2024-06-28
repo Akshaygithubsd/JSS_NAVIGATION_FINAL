@@ -46,6 +46,11 @@
             android:label="@string/title_activity_cameraFeatures"
             android:theme="@style/Theme.VectorMapComposeSample" />
         <activity
+            android:name=".sample.activities.camera.Main_Gate"
+            android:exported="false"
+            android:label="@string/title_activity_cameraFeatures"
+            android:theme="@style/Theme.VectorMapComposeSample" />
+        <activity
             android:name=".sample.activities.camera.LocationCameraOptionActivity"
             android:exported="false"
             android:label="@string/title_activity_location_camera_option"

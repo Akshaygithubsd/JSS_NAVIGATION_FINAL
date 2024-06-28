@@ -45,6 +45,7 @@ import com.mappls.sdk.demo.sample.activities.camera.CameraFeaturesActivity
 import com.mappls.sdk.demo.sample.activities.camera.DORMITORY
 import com.mappls.sdk.demo.sample.activities.camera.Jeweleery
 import com.mappls.sdk.demo.sample.activities.camera.Library_Activity
+import com.mappls.sdk.demo.sample.activities.camera.Main_Gate
 //import kotlinx.coroutines.DefaultExecutor.delay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -60,7 +61,7 @@ class MainActivity : ComponentActivity() {
         }
 
         lifecycleScope.launch {
-            delay(4000L) // Splash screen duration
+            delay(3000L) // Splash screen duration
             setContent {
                   MainScreen()
             }
@@ -88,7 +89,7 @@ fun SplashScreen() {
             Image(
                 painter = painterResource(id = R.drawable.finallogo),
                 contentDescription = "Logo",
-                modifier = Modifier.size(750.dp).padding(start=132.dp)
+                modifier = Modifier.size(900.dp).padding(start=280.dp)
             )
         }
         Box(
@@ -189,12 +190,14 @@ fun Navigation(navController: NavHostController) {
         composable(MenuItem.MapEvents.route) {
             val list = listOf(
                 //ListItem("Current Location","", LocationCameraOptionActivity::class.java),
+                ListItem("MAIN-GATE","", Main_Gate ::class.java),
                 ListItem("A-BLOCK","", CameraFeaturesActivity::class.java),
                 ListItem("B-BLOCK","", B_activity::class.java),
                 ListItem("C-BLOCK","", C_Activity::class.java),
                 ListItem("LIBRARY","", Library_Activity::class.java),
                 ListItem("JEWELLERY-BLOCK","",Jeweleery::class.java),
                 ListItem("DORMITORY-BLOCK","", DORMITORY ::class.java),
+
 
 
                 )
@@ -228,7 +231,7 @@ fun UiInit(list: List<ListItem>) {
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFFA500),
                         )
                 ) {
-                    Text(text = item.name, color = Color.Black, modifier = Modifier.padding(vertical = 8.dp))
+                    Text(text = item.name, color = Color.Black, fontSize = 18.sp, modifier = Modifier.padding(vertical = 32.dp))
                 }
             }
         }
